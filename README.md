@@ -10,8 +10,8 @@ The perfect use case for this repo is:
     
     
     
-#***Way This Repo Works***
-It paste crops at random position for every image in your dataset from crop folder.
+# Way This Repo Works
+It paste crops seamlessly (if you want) at random position for every image in your dataset from crop folder.
 
 # CROP FOLDER
       The crop folder should contain hand picked crops which you need to add to your images, It can be objects  
@@ -21,4 +21,4 @@ It paste crops at random position for every image in your dataset from crop fold
       crop should be placed inside its folder.
       
       
-V2 of this repo is going to come soon.....one in which you wont need the crop folder or any thing else.....
+V2 of this repo is going to come soon.....one in which you won't need the crop folder or any thing else.....
