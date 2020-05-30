@@ -10,7 +10,7 @@ The perfect use case for this repo is:
     
     
     
-***Way This Repo Works***
+#***Way This Repo Works***
 It paste crops at random position for every image in your dataset from crop folder.
 
 # CROP FOLDER
