@@ -12,7 +12,8 @@ The perfect use case for this repo is:
     
 # Way This Repo Works
 It paste crops seamlessly (if you want) at random position for every image in your dataset from crop folder.
-   For every frame:
+     
+     For every frame:
         1. Selects number of crops (between 1 and 4) to paste in frame.(say n)
         2. Randomly selects n classes from classes list.
         For every class:
