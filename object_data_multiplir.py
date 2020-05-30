@@ -128,12 +128,15 @@ def update_json(data, x_offset, y_offset, image_id, crop, category_id, id):
 
 def main():
     global id
-    with open('/home/neo/data/paarth_augmentation_tests/DATA/train1.json') as f:
+    with open('PATH/TO/ANNOTAION/FILE') as f:
         data = json.load(f)
-    frame_dir = '/home/neo/data/paarth_augmentation_tests/DATA/cctv_frames'
-    crops_dir = '/home/neo/data/paarth_augmentation_tests/DATA/sandbox_crops'
-    save_dir = '/home/neo/data/paarth_augmentation_tests/DATA/non_seamless/1'
-
+    frame_dir = 'PATH/TO/IMAGE/DIRECTORY'
+    crops_dir = 'PATH/TO/HAND/PICKED/CROPS/DIRECTORY'
+    save_dir = 'PATH/TO/SAVE/FOLDER'
+    
+    #TRUE FOR SEAMLESS CLONING
+    seamless = True
+    
     for i in range(len(data['annotations'])):
         id = data['annotations'][i]['id']
 
@@ -160,9 +163,14 @@ def main():
             centre = (int(x_offset + crop.shape[1]/2), int(y_offset + crop.shape[0]/2))
             mask = np.zeros((crop.shape[0], crop.shape[1], 3), np.uint8)
             mask = mask.fill(255.0)
+                       
+            
             #Paste the crop at x_offset and y_offset
-            frame[y_offset:y_offset + crop.shape[0], x_offset:x_offset + crop.shape[1]] = crop #For normal copy paste
-            # frame = cv2.seamlessClone(crop, frame, mask, p=centre, flags=cv2.MIXED_CLONE) #for seamless cloning
+            if seamless:
+                frame = cv2.seamlessClone(crop, frame, mask, p=centre, flags=cv2.MIXED_CLONE) #for seamless cloning
+            else:
+                frame[y_offset:y_offset + crop.shape[0], x_offset:x_offset + crop.shape[1]] = crop #For normal copy paste
+            
             data = update_json(data, x_offset, y_offset, image_id, crop, cls, id)
             id += 1
         cv2.imwrite(os.path.join(save_dir, file_name), frame)
